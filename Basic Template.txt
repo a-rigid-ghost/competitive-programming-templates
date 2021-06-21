@@ -1,0 +1,91 @@
+#include<bits/stdc++.h>
+using namespace std; 
+ 
+#define fast            ios_base::sync_with_stdio(false); cin.tie(NULL);
+#define lli             long long int
+#define ld              long double
+#define pll             pair<lli,lli>
+#define ve              vector<lli>
+#define vep             vector<pll>
+#define pb              push_back
+#define mp              make_pair
+#define mt              make_tuple
+#define all(x)          (x).begin(),(x).end()
+#define fr(i,a,n)       for(lli i=a;i<(n);i++)
+#define frx(i,a,n)      for(lli i=a;i>(n);i--)
+#define lb              lower_bound
+#define ub              upper_bound
+#define F               first
+#define S               second
+#define endl            '\n'
+#define op(x)           cout<<x<<endl
+#define parr(arr,a,n)   fr(u,a,n) cout<<arr[u]<<" "; cout<<endl
+#define yes             cout<<"YES"<<endl
+#define no              cout<<"NO"<<endl
+#define mem(a,x)        memset(a,x,sizeof(a))
+#define sz(a) 		    ((lli) a.size())
+
+#define db(...) logger(#__VA_ARGS__, __VA_ARGS__)
+template<typename ...Args>
+void logger(string vars, Args&&... values) {
+    cout << vars << " = ";
+    string delim = "";
+    (..., (cout << delim << values, delim = ", "));
+    cout<<endl;
+}
+
+void solve(){
+    
+}
+
+int main(){
+    fast;
+    // #ifndef ONLINE_JUDGE
+    // freopen("input.txt","r",stdin);
+    // freopen("output.txt","w",stdout);
+    // #endif
+    lli test=1;
+    cin>>test;
+    while(test--){
+        solve();
+    }
+}
+
+/////////faster unordered map
+
+unordered_map<lli,ve> m;
+m.reserve(524288);	////any no. greater than req preff a power of 2
+m.max_load_factor(0.25);
+
+////////custom comparator
+///// RETURN TRUE WHEN A < B
+
+struct custom{
+    bool operator() (const pll &a,const pll &b) const
+    {
+        if((a.F)*(b.S)<(b.F)*(a.S))return true;
+        return false;
+    }
+};
+
+///////////PBDS
+
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+typedef tree<pair<lli,lli>, null_type, less<pair<lli,lli>>, rb_tree_tag, tree_order_statistics_node_update> pset; 
+
+//string str = bitset<64>(n).to_string();
+
+//////////////// GOOGLE TEMPLATE
+
+int main(){
+    fast;
+    lli test,cur=1;
+    cin>>test;
+    while(cur<test+1){
+        cout<<"Case #"<<cur<<": ";
+        solve();
+        cur++;
+    }
+}

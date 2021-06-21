@@ -1,0 +1,16 @@
+// 1-based indexing
+const lli N=2e6+5;
+lli B[N]={0};
+lli n;
+void update(lli x, lli val)
+{
+      for(; x <= n; x += x&-x)
+        B[x] += val;
+}
+lli query(lli x)
+{
+     lli sum = 0;
+     for(; x > 0; x -= x&-x)
+        sum += B[x];
+     return sum;
+}

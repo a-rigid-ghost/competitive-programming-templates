@@ -1,0 +1,61 @@
+/////////TOPSORT
+ve adj[20];
+lli visited[20]={0},order[20]={0};
+lli i;
+void dfs(lli root){
+    visited[root]=1;
+    frx(i,adj[root].size()-1,-1){
+        if(!visited[adj[root][i]]) dfs(adj[root][i]);
+    }
+    order[i]=root;
+    i--;
+}
+
+/////////////Tarjan
+
+const lli N=1e5+5;
+lli mod=1e9+7;
+ve adj[N];
+lli ids[N],low[N]={0},stacks[N]={0},visited[N]={0},id=0,n,m;
+stack<lli> instack;
+
+void tarjan(lli cur){
+    ids[cur]=++id;
+    low[cur]=id;
+    visited[cur]=1;
+    stacks[cur]=1;
+    instack.push(cur);
+    for(auto nei:adj[cur]){
+        if(!visited[nei]) tarjan(nei);
+        if(stacks[nei]) low[cur]=min(low[cur],low[nei]);
+    }
+    if(low[cur]==ids[cur]){
+        while(1){
+            lli con=instack.top();
+            instack.pop();
+            low[con]=low[cur];
+            stacks[con]=0;
+            if(con==cur)break;
+        }
+    }
+}
+
+////////////Diameter
+lli dia=0;
+lli dfs(lli root,lli par){
+    ve v;
+    for(auto chi:adj[root]){
+        if(chi!=par){
+            v.pb(dfs(chi,root));
+        }
+    }
+    lli sz=v.size();
+    if(sz==0)return 0;
+    if(sz==1){
+        dia=max(dia,v[0]+1);
+        return v[0]+1;
+    }
+    sort(all(v),greater<lli>());
+    dia=max(dia,2+v[0]+v[1]);
+    return v[0]+1;
+}
