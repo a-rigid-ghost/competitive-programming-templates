@@ -1,14 +1,30 @@
-/////////TOPSORT
-ve adj[20];
-lli visited[20]={0},order[20]={0};
-lli i;
+//////BASIC GRAPH STRUCTURE
+
+const lli N=1e5+10;
+lli n,m;
+ve adj[N],vis(N,0);
+
 void dfs(lli root){
-    visited[root]=1;
-    frx(i,adj[root].size()-1,-1){
-        if(!visited[adj[root][i]]) dfs(adj[root][i]);
+    vis[root]=1;
+    for(auto e:adj[root]){
+        if(!vis[e]){
+            dfs(e);
+        }
     }
-    order[i]=root;
-    i--;
+}
+ 
+void graphInput(){
+    cin>>n>>m;
+    fr(i,0,n+5){
+        adj[i].clear();
+        vis[i]=0;
+    }
+    fr(i,0,m){
+        lli u,v;
+        cin>>u>>v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
 }
 
 /////////////Tarjan
