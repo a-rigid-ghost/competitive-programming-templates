@@ -1,0 +1,51 @@
+///Sparse table struct - there are 2 types of queries, use only one
+
+struct SparseTable{
+    lli N,K;
+    vector<ve> table;
+    ve logtwo;
+    
+    ///change the function accordingly
+    lli f(lli a,lli b){
+        return min(a,b);
+    }
+    
+    ///constructor
+    SparseTable(ve a){
+        N=sz(a);
+        K=log2(N)+2;
+        table=vector<ve>(N,ve(K));
+        logtwo=ve(N+5);
+        
+        ///computing logarithms of 2 and building the table
+        logtwo[1]=0;
+        fr(i,2,N+1){
+            logtwo[i]=logtwo[i/2]+1;
+        }
+        frx(i,N-1,-1){
+            table[i][0]=a[i];
+            for(lli j=1;i+(1LL<<j)-1<N;j++){
+                table[i][j]=f(table[i][j-1],table[i+(1LL<<(j-1))][j-1]);
+            }
+        }
+    }
+    
+    ///O(logn) query
+    lli query(lli l,lli r){
+        lli ans=1e18;  ///initialize with a useless value
+        lli curl=l;
+        while(curl<=r){
+            lli temp=logtwo[r-curl+1];
+            ans=f(ans,table[curl][temp]);
+            curl+=(1LL<<temp);
+        }
+        return ans;
+    }
+    
+    ///O(1) query, only for idempotent operators
+    lli query(lli l,lli r){
+        lli temp=logtwo[r-l+1];
+        lli ans=f(table[l][temp],table[r-(1LL<<temp)+1][temp]);
+        return ans;
+    }
+};
