@@ -12,6 +12,22 @@ void dfs(lli root){
         }
     }
 }
+
+void bfs(lli start){
+    vis[start]=1;
+    queue<lli> q;
+    q.push(start);
+    while(!q.empty()){
+        lli cur=q.front();
+        q.pop();
+        for(auto e:adj[cur]){
+            if(!vis[e]){
+                vis[e]=1;
+                q.push(e);
+            }
+        }
+    }
+}
  
 void graphInput(){
     cin>>n>>m;
