@@ -44,12 +44,6 @@ int main(){
     }
 }
 
-/////////faster unordered map
-
-unordered_map<lli,ve> m;
-m.reserve(524288);	////any no. greater than req preff a power of 2
-m.max_load_factor(0.25);
-
 ////////custom comparator
 ///// RETURN TRUE WHEN A < B
 
