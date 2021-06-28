@@ -30,33 +30,3 @@ void solve(){
     }
     cout<<ans;
 }
-
-/////GRID BFS 
-
-lli n,m,w;
-ve dr={1,-1,0,0};
-ve dc={0,0,1,-1};
-
-lli check(lli i,lli j){
-    if(i>0 && i<=n && j>0 && j<=m)return 1;
-    return 0;
-}
-
-vector<ve> bfs(lli x,lli y){
-    vector<ve> dist(n+5,ve(m+5,-1));
-    queue<pll> q;
-    dist[x][y]=0;
-    q.push(mp(x,y));
-    while(!q.empty()){
-        pll cur=q.front();
-        q.pop();
-        fr(i,0,4){
-            lli r=cur.F+dr[i],c=cur.S+dc[i];
-            if(check(r,c) && dist[r][c]==-1){
-                dist[r][c]=dist[cur.F][cur.S]+1;
-                q.push(mp(r,c));
-            }
-        }
-    }
-    return dist;
-}
