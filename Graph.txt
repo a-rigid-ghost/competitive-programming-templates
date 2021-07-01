@@ -43,6 +43,44 @@ void graphInput(){
     }
 }
 
+/////Djikstra
+
+const lli N=1e5+10;
+lli n,m;
+vector<ve> adj[N];
+ 
+void graphInput(){
+    cin>>n>>m;
+    fr(i,0,n+5){
+        adj[i].clear();
+    }
+    fr(i,0,m){
+        lli u,v,w;
+        cin>>u>>v>>w;
+        adj[u].pb({v,w});
+        adj[v].pb({u,w});
+    }
+}
+
+ve Djikstra(lli x){
+    ve dist(N,1e18);
+    dist[x]=0;
+    set<ve> s;
+    fr(i,1,n+1)s.insert({dist[i],i});
+    while(!s.empty()){
+        auto cur=*s.begin();
+        s.erase(s.begin());
+        for(auto e:adj[cur[1]]){
+            if(dist[e[0]]>dist[cur[1]]+e[1]){
+                s.erase({dist[e[0]],e[0]});
+                dist[e[0]]=dist[cur[1]]+e[1];
+                s.insert({dist[e[0]],e[0]});
+            }
+        }
+    }
+    return dist;
+}
+
 /////GRID BFS 
 
 lli n,m,w;
