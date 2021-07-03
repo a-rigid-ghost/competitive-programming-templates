@@ -19,6 +19,7 @@ using namespace std;
 #define S               second
 #define endl            '\n'
 #define op(x)           cout<<x<<endl
+#define op2(x,y)        cout<<x<<" "<<y<<endl
 #define parr(arr,a,n)   fr(u,a,n) cout<<arr[u]<<" "; cout<<endl
 #define yes             cout<<"YES"<<endl
 #define no              cout<<"NO"<<endl
