@@ -47,6 +47,7 @@ int main(){
 
 ////////custom comparator
 ///// RETURN TRUE WHEN A < B
+///// RETURN FALSE WHEN A > B
 ///// RETURN FALSE WHEN A==B
 
 struct custom{
