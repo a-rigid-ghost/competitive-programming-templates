@@ -161,3 +161,60 @@ struct lazyrange{
         return min(query(2*i+1,l,m,ql,qr),query(2*i+2,m+1,r,ql,qr));
     }
 };
+
+///////////////////// LAZY prop range query { add val to (ql,qr) and find sum in a given range }
+
+struct lazyrange{
+    lli n;
+    ve t,lazy,a;
+    
+    void build(lli i,lli l,lli r){
+        if(l==r){
+            t[i]=a[l];
+            return;
+        }
+        lli m=(l+r)/2;
+        build(2*i+1,l,m);
+        build(2*i+2,m+1,r);
+        t[i]=t[2*i+1]+t[2*i+2];
+    }
+    
+    lazyrange (ve arr){
+        n=arr.size();
+        t.assign(4*n+10,0);
+        lazy.assign(4*n+10,0);
+        a=arr;
+        build(0,0,n-1);
+    }
+    
+    void push(lli i,lli l,lli r){
+        t[i]+=(r-l+1)*lazy[i];
+        if(l!=r){
+            lazy[2*i+1]+=lazy[i];
+            lazy[2*i+2]+=lazy[i];
+        }
+        lazy[i]=0;
+    }
+    
+    void update(lli i,lli l,lli r,lli val,lli ql,lli qr){
+        push(i,l,r);
+        if(qr<l || r<ql)return;
+        if(ql<=l && r<=qr){
+            lazy[i]+=val;
+            push(i,l,r);
+            return;
+        }
+        lli m=(l+r)/2;
+        update(2*i+1,l,m,val,ql,qr);
+        update(2*i+2,m+1,r,val,ql,qr);
+        t[i]=t[2*i+1]+t[2*i+2];
+    }
+    
+    lli query(lli i,lli l,lli r,lli ql,lli qr){
+        if(qr<l || r<ql)return 0;
+        push(i,l,r);
+        if(ql<=l && r<=qr) return t[i];
+        lli m=(l+r)/2;
+        return query(2*i+1,l,m,ql,qr)+query(2*i+2,m+1,r,ql,qr);
+    }
+};
