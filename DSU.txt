@@ -1,22 +1,31 @@
 ////1-based
 
-int find(int x,lli par[]){
-    if(par[x]!=x){
-        par[x]=find(par[x],par);
+struct dsu{
+    lli n;
+    ve par,val;
+    
+    dsu (lli x){
+        n=x;
+        par.assign(n+5,0);
+        val.assign(n+5,0);
+        fr(i,1,n+1){
+            par[i]=i;
+            val[i]=1;
+        }
     }
-    return par[x];
-}
- 
-void merge(int x,int y,lli par[],lli val[]){
-    int xr=find(x,par),yr=find(y,par);
-    if(val[xr]<val[yr])swap(xr,yr);
-    par[yr]=xr;
-    val[xr]+=val[yr];
-}
-
-////initialization
-
-for(int i=1;i<n+1;i++){
-    par[i]=i;
-    val[i]=1;
-}
+    
+    lli find(lli x){
+        if(par[x]!=x){
+            par[x]=find(par[x]);
+        }
+        return par[x];
+    }
+    
+    void merge(lli x,lli y){
+        lli xr=find(x),yr=find(y);
+        if(val[xr]<val[yr])swap(xr,yr);
+        par[yr]=xr;
+        val[xr]+=val[yr];
+    }
+    
+};
