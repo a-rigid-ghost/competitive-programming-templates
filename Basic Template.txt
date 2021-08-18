@@ -45,6 +45,11 @@ int main(){
     }
 }
 
+/////coordinate compression
+
+sort(all(comp));
+comp.resize(unique(all(comp))-comp.begin());
+
 ////////custom comparator
 ///// RETURN TRUE WHEN A < B
 ///// RETURN FALSE WHEN A > B
