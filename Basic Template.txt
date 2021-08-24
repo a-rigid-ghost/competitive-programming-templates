@@ -45,6 +45,26 @@ int main(){
     }
 }
 
+////// Basic Modular 
+
+lli mod;
+
+lli add(lli a,lli b){
+    lli res=a+b;
+    if(res>=mod) res-=mod;
+    return res;
+}
+
+lli sub(lli a,lli b){
+    lli res=a-b;
+    if(res<0) res+=mod;
+    return res;
+}
+
+lli mul(lli a,lli b){
+    return (a*b)%mod;
+}
+
 /////coordinate compression
 
 sort(all(comp));
