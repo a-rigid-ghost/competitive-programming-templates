@@ -54,6 +54,59 @@ struct segtree{
     }
 };
 
+////////////////////Maximum Subsegment
+
+struct node{
+    lli val,pre,suf,sum;
+    node (){
+        val=pre=suf=sum=-INF;
+    }
+    node (lli a){
+        val=pre=suf=sum=a;
+    }
+};
+
+struct Segtree{
+    lli n;
+    ve a;
+    vector<node> t;
+    
+    node merge(node a,node b){
+        node res;
+        res.val=max({a.val,b.val,a.suf+b.pre});
+        res.pre=max(a.pre,a.sum+b.pre);
+        res.suf=max(a.suf+b.sum,b.suf);
+        if(min(a.sum,b.sum)==-INF)res.sum=-INF;
+        else res.sum=a.sum+b.sum;
+        return res;
+    }
+    
+    void build(lli i,lli l,lli r){
+        if(l==r){
+            t[i]=node(a[l]);
+            return;
+        }
+        lli m=(l+r)/2;
+        build(2*i+1,l,m);
+        build(2*i+2,m+1,r);
+        t[i]=merge(t[2*i+1],t[2*i+2]);
+    }
+    
+    Segtree(ve arr){
+        n=arr.size();
+        t.resize(4*n+10);
+        a=arr;
+        build(0,0,n-1);
+    }
+    
+    node query(lli i,lli l,lli r,lli ql,lli qr){
+        if(qr<l || r<ql)return node();
+        if(ql<=l && r<=qr) return t[i];
+        lli m=(l+r)/2;
+        return merge(query(2*i+1,l,m,ql,qr),query(2*i+2,m+1,r,ql,qr));
+    }
+};
+
 ///////////////////// LAZY prop point query { add val to (ql,qr) and find value at a give index }
 
 struct lazypoint{
