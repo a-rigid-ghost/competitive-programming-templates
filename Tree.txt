@@ -54,4 +54,13 @@ struct LCA{
         lli c=findlca(a,b);
         return dep[a]+dep[b]-2*dep[c];
     }
+    
+    lli kanc(lli a,lli k){
+        fr(i,0,maxj+1){
+            if(k&(1LL<<i)){
+                a=up[a][i];
+            }
+        }
+        return a;
+    }
 };
