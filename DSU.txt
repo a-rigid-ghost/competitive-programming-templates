@@ -23,6 +23,7 @@ struct dsu{
     
     void merge(lli x,lli y){
         lli xr=find(x),yr=find(y);
+        if(xr==yr) return;
         if(val[xr]<val[yr])swap(xr,yr);
         par[yr]=xr;
         val[xr]+=val[yr];
