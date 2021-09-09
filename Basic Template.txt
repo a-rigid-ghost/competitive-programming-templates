@@ -135,6 +135,13 @@ struct custom{
     }
 };
 
+static bool cmp(const string &a,const string &b) {
+    int n=a.size(),m=b.size();
+    if(n<m)return true;
+    if(n>m)return false;
+    return (a<b);
+}
+
 ///////////PBDS
 
 #include <ext/pb_ds/assoc_container.hpp>
