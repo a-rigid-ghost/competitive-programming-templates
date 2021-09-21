@@ -94,4 +94,55 @@ struct bTrie{
     }
 };
 
-//////
+//////////Trie Pointer Implementation
+
+struct node {
+	node *nxt[2];
+	int cnt=0;
+};
+
+struct Trie{
+    node *head;
+    
+    Trie(){
+        head=new node();
+    }
+    
+    void add(int x){
+        node *cur=head;
+        for(int i=29;i>-1;i--){
+            int bx=(x>>i)&1;
+            if(cur->nxt[bx]==NULL) cur->nxt[bx]=new node();
+            cur=cur->nxt[bx];
+            (cur->cnt)++;
+        }
+    }
+    
+    void rem(int x){
+        node *cur=head;
+        for(int i=29;i>-1;i--){
+            int bx=(x>>i)&1;
+            cur=cur->nxt[bx];
+            (cur->cnt)--;
+        }
+    }
+    
+    int query(int x,int k){
+        node *cur=head;
+        int ans=0;
+        for(int i=29;i>-1;i--){
+            if(cur==NULL)break;
+            int bx=(x>>i)&1,bk=(k>>i)&1;
+            if(bk==0){
+                int tmp=bx^1;
+                if(cur->nxt[tmp]!=NULL) ans+=(cur->nxt[tmp]->cnt);
+                cur=cur->nxt[bx];
+            }
+            else{
+                int tmp=bx^1;
+                cur=cur->nxt[tmp];
+            }
+        }
+        return ans;
+    }
+};
