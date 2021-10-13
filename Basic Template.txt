@@ -127,20 +127,16 @@ comp.resize(unique(all(comp))-comp.begin());
 ///// RETURN FALSE WHEN A > B
 ///// RETURN FALSE WHEN A==B
 
-struct custom{
-    bool operator() (const pll &a,const pll &b) const
-    {
-        if((a.F)*(b.S)<(b.F)*(a.S))return true;
-        return false;
-    }
-};
-
 static bool cmp(const string &a,const string &b) {
     int n=a.size(),m=b.size();
     if(n<m)return true;
     if(n>m)return false;
     return (a<b);
 }
+
+/// declare a set for set
+
+set<int,decltype(&cmp)> s(cmp);
 
 ///////////PBDS
 
