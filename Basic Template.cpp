@@ -55,6 +55,14 @@ int main(){
     }
 }
 
+///// RNG Stuff
+
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+lli random_long(lli l = 0,lli r = 10){
+    uniform_int_distribution<int64_t> generator(l,r);
+    return generator(rng);
+}
+
 //////__int128 I/O
 
 #ifdef __SIZEOF_INT128__
