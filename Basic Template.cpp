@@ -134,7 +134,7 @@ static bool cmp(const string &a,const string &b) {
     return (a<b);
 }
 
-/// declare a set for set
+/// declaration for set
 
 set<int,decltype(&cmp)> s(cmp);
 
