@@ -75,16 +75,11 @@ lli ncr(lli n, lli r, lli p=mod)
 const lli N=55;
 lli C[N][N];
 
-void precomp()
-{   
-    for (int i = 0; i < N; i++) 
-    { 
-        for (int j = 0; j <= i; j++) 
-        { 
-            if (j == 0 || j == i) 
-                C[i][j] = 1;
-            else
-                C[i][j] = C[i - 1][j - 1] +  C[i - 1][j]; 
+void precomp(){   
+    fr(i,0,N+1){ 
+        fr(j,0,i+1){ 
+            if (j==0 || j==i) C[i][j]=1;
+            else C[i][j]=(C[i-1][j-1]+C[i-1][j])%mod; 
         } 
     }
 }
