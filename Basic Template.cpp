@@ -105,6 +105,11 @@ istream& operator >> (istream& is, __int128& T){
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #pragma comment(linker, "/stack:200000000")
 
+////recc.
+
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+
 ////// Basic Modular 
 
 lli mod;
