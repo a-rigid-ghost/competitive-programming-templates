@@ -51,6 +51,7 @@ void precomp(lli p=mod){
 lli power(lli x, lli y, lli p=mod){ 
     lli res = 1;      
     x = x % p;   
+    if(x==0 || y<0)return 0;
     while (y > 0){ 
         if (y & 1) res = (res*x) % p; 
         y = y>>1; 
