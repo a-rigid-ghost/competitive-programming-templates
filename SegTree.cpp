@@ -28,7 +28,7 @@ struct segtree{
         t[i]=merge(t[2*i+1],t[2*i+2]);
     }
     
-    void init(ve arr){
+    segtree (ve arr){
         n=arr.size();
         t.assign(4*n+10,node());
         a=arr;
