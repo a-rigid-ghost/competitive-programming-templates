@@ -25,6 +25,7 @@ using namespace std;
 #define mem(a,x)        memset(a,x,sizeof(a))
 #define sz(a) 		    ((lli) a.size())
 #define INF             (lli)4e18
+#define INF2            (lli)1e17
 
 #define trace(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
