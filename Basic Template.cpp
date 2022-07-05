@@ -37,6 +37,7 @@ void __f(const char* names, Arg1&& arg1, Args&&... args){
     const char* comma = strchr(names + 1, ',');cout.write(names, comma - names) << " : " << arg1<<" | ";__f(comma+1, args...);
 }
 
+const lli N=1e5+10;
 //-----------------------------------------CODE_BEGINS----------------------------//
 
 void solve(){
@@ -45,15 +46,31 @@ void solve(){
 
 int main(){
     fast;
-    // #ifndef ONLINE_JUDGE
-    // freopen("input.txt","r",stdin);
-    // freopen("output.txt","w",stdout);
-    // #endif
     lli test=1;
     cin>>test;
     while(test--){
         solve();
     }
+}
+
+////// Basic Modular 
+
+lli mod;
+
+lli add(lli a,lli b){
+    lli res=a+b;
+    if(res>=mod) res-=mod;
+    return res;
+}
+
+lli sub(lli a,lli b){
+    lli res=a-b;
+    if(res<0) res+=mod;
+    return res;
+}
+
+lli mul(lli a,lli b){
+    return (a*b)%mod;
 }
 
 ///// RNG Stuff
@@ -110,26 +127,6 @@ istream& operator >> (istream& is, __int128& T){
 
 #pragma GCC optimize("O3,unroll-loops")
 #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
-
-////// Basic Modular 
-
-lli mod;
-
-lli add(lli a,lli b){
-    lli res=a+b;
-    if(res>=mod) res-=mod;
-    return res;
-}
-
-lli sub(lli a,lli b){
-    lli res=a-b;
-    if(res<0) res+=mod;
-    return res;
-}
-
-lli mul(lli a,lli b){
-    return (a*b)%mod;
-}
 
 /////coordinate compression
 
@@ -193,3 +190,10 @@ int main(){
         cur++;
     }
 }
+
+////// Local Template
+
+#ifndef ONLINE_JUDGE
+freopen("input.txt","r",stdin);
+freopen("output.txt","w",stdout);
+#endif
