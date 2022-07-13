@@ -73,6 +73,17 @@ lli mul(lli a,lli b){
     return (a*b)%mod;
 }
 
+///// Interactive asker
+
+lli ask(ve v){
+    cout<<"? ";
+    for(auto e:v)cout<<e<<" ";
+    cout<<endl;
+    lli ans;
+    cin>>ans;
+    return ans;
+}
+
 ///// RNG Stuff
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
